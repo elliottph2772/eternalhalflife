@@ -298,7 +298,7 @@ function ProjectsPage() {
     <div className="page projects-page">
       <div className="page-header">
         <h2>Projects</h2>
-        <p>Things built during school and in my free time.</p>
+        <p>Click on a project for an expanded demonstration.</p>
       </div>
       <div className="projects-list">
         {projects.map((p) => (
