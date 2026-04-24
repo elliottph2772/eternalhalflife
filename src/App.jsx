@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, Torus, Box, Sphere, MeshDistortMaterial } from '@react-three/drei'
 import './App.css'
+import WGUPSDemo from './WGUPSDemo.jsx'
 
 // ── DATA ──────────────────────────────────────────────────────────────────────
 
@@ -48,19 +49,40 @@ const courses = [
 
 const projects = [
   {
-    id: 1,
-    title: 'WGUPS Routing System',
-    tag: 'Python · Algorithms',
-    description:
-      'A parcel delivery simulation for Salt Lake City using a nearest-neighbor routing algorithm, a custom chained hash table keyed by package ID, and a singly linked list per-truck route. Includes a supervisor UI with time-windowed status queries.',
-    highlights: [
-      'Hash Tables & Linked Lists',
-      'Nearest-neighbor O(n²) optimizer',
-      'Package Filtering logic',
-      'Time-windowed delivery status',
-    ],
-    color: '#7fffb2',
-  },
+  id: 1,
+  title: 'WGUPS Routing System',
+  tag: 'Python · Algorithms',
+  description: 'A parcel delivery simulation for Salt Lake City using a nearest-neighbor routing algorithm, a custom chained hash table keyed by package ID, and a singly linked list per-truck route. Includes a supervisor UI with time-windowed status queries.',
+  highlights: [
+    'Hash Tables & Linked Lists',
+    'Nearest-neighbor O(n²) optimizer',
+    'Package Filtering logic',
+    'Time-windowed delivery status',
+  ],
+  color: '#7fffb2',
+  details: [
+    {
+      label: 'Simulation',
+      component: <WGUPSDemo />,
+    },
+    {
+      label: 'The Problem',
+      content: 'Design a routing algorithm for three trucks delivering 40 packages across Salt Lake City under a set of constraints — package deadlines, truck capacity limits, delayed arrivals, and a wrong address that corrects itself mid-day. Total mileage had to stay under 140 miles.',
+    },
+    {
+      label: 'Data Structures',
+      content: 'Built a chained hash table from scratch keyed by package ID for O(1) average lookup. Each truck route is stored as a singly linked list, allowing efficient insertion and traversal without relying on any standard library containers.',
+    },
+    {
+      label: 'Routing Algorithm',
+      content: 'Implemented a nearest-neighbor greedy algorithm that at each step selects the closest undelivered package. Consistently produced routes under the 140 mile requirement, running in O(n²) time.',
+    },
+    {
+      label: 'Supervisor UI',
+      content: 'A command line interface lets the user enter any time during the day and see the exact status of every package at that moment — at the hub, en route, or delivered — along with total mileage across all trucks.',
+    },
+  ],
+},
   {
     id: 2,
     title: 'Portfolio Website',
@@ -232,7 +254,46 @@ function HomePage() {
   )
 }
 
+function ProjectDetail({ project, onBack }) {
+  return (
+    <div className="page project-detail-page">
+      <button className="back-btn" onClick={onBack}>← Projects</button>
+      <div className="detail-header" style={{ '--accent': project.color }}>
+        <div className="detail-tag">{project.tag}</div>
+        <h2 className="detail-title">{project.title}</h2>
+      </div>
+      <div className="detail-body">
+        <div className="detail-section">
+          <div className="detail-section-label">Overview</div>
+          <p>{project.description}</p>
+        </div>
+        <div className="detail-section">
+          <div className="detail-section-label">Key Features</div>
+          <ul className="detail-highlights">
+            {project.highlights.map((h, i) => <li key={i}>{h}</li>)}
+          </ul>
+        </div>
+        {project.details && project.details.map((block, i) => (
+          <div className="detail-section" key={i}>
+            <div className="detail-section-label">{block.label}</div>
+            {block.component
+              ? <div style={{ gridColumn: '1 / -1' }}>{block.component}</div>
+              : <p>{block.content}</p>
+            }
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 function ProjectsPage() {
+  const [selected, setSelected] = useState(null)
+
+  if (selected) {
+    return <ProjectDetail project={selected} onBack={() => setSelected(null)} />
+  }
+
   return (
     <div className="page projects-page">
       <div className="page-header">
@@ -241,7 +302,12 @@ function ProjectsPage() {
       </div>
       <div className="projects-list">
         {projects.map((p) => (
-          <div className="project-card" key={p.id} style={{ '--accent': p.color }}>
+          <div
+            className="project-card"
+            key={p.id}
+            style={{ '--accent': p.color, cursor: 'pointer' }}
+            onClick={() => setSelected(p)}
+          >
             <div className="project-top">
               <div>
                 <div className="project-tag">{p.tag}</div>
