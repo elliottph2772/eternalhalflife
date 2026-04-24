@@ -400,3 +400,27 @@ main {
   nav { padding: 0 1.2rem; }
   .nav-btn { padding: 6px 10px; }
 }
+
+/* ── MOBILE ──────────────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .page { padding: 2rem 1.2rem 4rem; }
+
+  /* hide Home tab on mobile — logo is the home button */
+  .hide-on-mobile { display: none; }
+
+  /* nav — tighten spacing so About is always visible */
+  nav { padding: 0 1rem; }
+  .nav-logo { font-size: 1rem; }
+  .nav-btn { padding: 6px 8px; font-size: 0.68rem; }
+
+  /* course cards — 2 per row */
+  .courses-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* about layout — stack label above text */
+  .about-block { grid-template-columns: 1fr; gap: 0.4rem; }
+
+  /* 3D canvas shorter on mobile */
+  .canvas-wrapper { height: 320px; }
+}

@@ -339,26 +339,28 @@ const TABS = [
 
 export default function App() {
   const [active, setActive] = useState('home')
-  const { Page } = TABS.find((t) => t.id === active)
+  const {Page} = TABS.find((t) => t.id === active)
 
   return (
-    <>
-      <nav>
-        <div className="nav-logo">Eternal<span>Halflife</span></div>
-        <ul className="nav-tabs">
-          {TABS.map((t) => (
-            <li key={t.id}>
-              <button
-                className={`nav-btn ${active === t.id ? 'active' : ''}`}
-                onClick={() => setActive(t.id)}
-              >
-                {t.label}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </nav>
-      <main><Page /></main>
-    </>
+      <>
+        <nav>
+          <div className="nav-logo" onClick={() => setActive('home')} style={{cursor: 'pointer'}}>
+            Eternal<span>Halflife</span>
+          </div>
+          <ul className="nav-tabs">
+            {TABS.map((t) => (
+                <li key={t.id} className={t.id === 'home' ? 'hide-on-mobile' : ''}>
+                  <button
+                      className={`nav-btn ${active === t.id ? 'active' : ''}`}
+                      onClick={() => setActive(t.id)}
+                  >
+                    {t.label}
+                  </button>
+                </li>
+            ))}
+          </ul>
+        </nav>
+        <main><Page/></main>
+      </>
   )
 }
