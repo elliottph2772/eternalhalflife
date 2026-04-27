@@ -427,9 +427,11 @@ export default function App() {
                 </button>
               ))}
               <div className="mobile-menu-divider" />
-              <EmailLink className="mobile-menu-link" onAfterClick={() => setMenuOpen(false)} toastPosition="top" />
-              <a href="https://github.com/elliottph2772" className="mobile-menu-link" target="_blank" rel="noreferrer" onClick={() => setMenuOpen(false)}>GitHub</a>
-              <a href="https://linkedin.com/in/elliotthudson" className="mobile-menu-link" target="_blank" rel="noreferrer" onClick={() => setMenuOpen(false)}>LinkedIn</a>
+              <div className="mobile-menu-socials">
+                <EmailLink className="mobile-menu-link" onAfterClick={() => setMenuOpen(false)} toastPosition="top" />
+                <a href="https://github.com/elliottph2772" className="mobile-menu-link" target="_blank" rel="noreferrer" onClick={() => setMenuOpen(false)}>GitHub</a>
+                <a href="https://linkedin.com/in/elliotthudson" className="mobile-menu-link" target="_blank" rel="noreferrer" onClick={() => setMenuOpen(false)}>LinkedIn</a>
+              </div>
             </div>
           </>
         )}

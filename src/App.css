@@ -641,13 +641,19 @@ main {
     margin: 0.4rem 0.5rem;
   }
 
+  .mobile-menu-socials {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0.5rem 0.5rem 0.25rem;
+  }
   .mobile-menu-link {
     color: var(--muted);
     text-decoration: none;
     font-family: var(--fmono), monospace;
     font-size: 0.88rem;
     letter-spacing: 0.08em;
-    padding: 0.75rem 0.5rem;
+    padding: 0.5rem 0.25rem;
     border-radius: var(--r);
     transition: color 0.15s;
   }
