@@ -2,7 +2,7 @@
 
 > *Some Things Fade, But Hard Work Remains.*
 
-Personal portfolio website for **Elliott Hudson** — B.S. Computer Science student at Western Governors University. Built from scratch to showcase projects, technical skills, and academic progress.
+Personal portfolio website for **Myself** — B.S. Computer Science student at Western Governors University. Built from scratch to showcase projects, technical skills, and academic progress.
 
 ---
 
@@ -15,16 +15,15 @@ Deployed on [Vercel](https://vercel.com) — visit the live site to see it in ac
 ## Features
 
 ### Home
-- Hero section with name, degree program, and personal tagline
+- Main section with name, degree program, and personal tagline
 - Animated graduation progress bar tracking credits completed toward the 122-credit B.S. CS degree
-- Tech stack grid displaying languages and tools with branded icons
+- Tech stack grid displaying languages and tools I am familiar with, including branded icons
 - About section covering current focus, interests, and what I'm looking for
 
 ### Projects
 - Card-based project list with per-project accent colors
 - Expandable detail view for each project with sections for overview, key features, and technical breakdown
 - Interactive WGUPS delivery simulation embedded directly in the project detail page
-- "Projects" nav link doubles as a back button when inside a project detail
 
 ### Courses
 - Full list of completed WGU courses organized by category (Gen Ed, Core, Math, Programming, Data)
@@ -32,9 +31,9 @@ Deployed on [Vercel](https://vercel.com) — visit the live site to see it in ac
 - Credit count and pass/fail status on every card
 
 ### Nav & Mobile
-- Desktop nav includes centered Email, GitHub, and LinkedIn links
-- Email link copies address to clipboard on click with a styled toast notification — works even without a configured mail client
-- Hamburger menu on mobile collapses all navigation and social links into a clean slide-down drawer
+- Desktop nav includes Email, GitHub, and LinkedIn links
+- Email link copies address to clipboard on click with a styled toast notification — pop up appears when you don't have a configured mail client
+- Hamburger menu on mobile collapses all navigation and social links into a clean side-bar
 - Logo always acts as a Home button
 
 ---
