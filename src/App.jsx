@@ -203,8 +203,18 @@ function HomePage() {
   const [displayPct, setDisplayPct] = useState(0)
 
   useEffect(() => {
-    const t = setTimeout(() => setDisplayPct(pct), 300)
-    return () => clearTimeout(t)
+    let frame
+    let startTime = null
+    const duration = 2500
+    function easeOut(t) { return t === 1 ? 1 : 1 - Math.pow(2, -10 * t) }
+    const tick = (timestamp) => {
+      if (!startTime) startTime = timestamp
+      const t = Math.min((timestamp - startTime) / duration, 1)
+      setDisplayPct(Math.round(easeOut(t) * pct))
+      if (t < 1) frame = requestAnimationFrame(tick)
+    }
+    const timeout = setTimeout(() => { frame = requestAnimationFrame(tick) }, 300)
+    return () => { clearTimeout(timeout); cancelAnimationFrame(frame) }
   }, [pct])
 
   return (
@@ -220,11 +230,11 @@ function HomePage() {
       <div className="progress-section">
         <div className="progress-header">
           <span className="progress-label">Graduation Progress</span>
-          <span className="progress-pct">{displayPct}%</span>
         </div>
         <div className="progress-track">
           <div className="progress-fill" style={{ width: `${displayPct}%` }}>
             <span className="progress-glow" />
+            <span className="progress-pct-follow">{displayPct}%</span>
           </div>
         </div>
         <div className="progress-note">{completedCUs} of {WGU_TOTAL_CUS} CUs completed</div>
@@ -399,7 +409,7 @@ function AboutPage() {
 const TABS = [
   { id: 'home',     label: 'Home',     Page: HomePage     },
   { id: 'projects', label: 'Projects', Page: ProjectsPage },
-  { id: 'models',   label: '3D',       Page: ModelsPage   },
+  // { id: 'models',   label: '3D',       Page: ModelsPage   },
   { id: 'about',    label: 'About',    Page: AboutPage    },
 ]
 

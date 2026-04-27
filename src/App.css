@@ -53,7 +53,7 @@ nav {
 .nav-logo {
   font-family: var(--fhead);
   font-weight: 800;
-  font-size: 1.15rem;
+  font-size: 1.38rem;
   letter-spacing: -0.03em;
   color: var(--accent);
 }
@@ -66,7 +66,7 @@ nav {
 .nav-btn {
   background: none; border: none;
   font-family: var(--fmono);
-  font-size: 0.72rem;
+  font-size: 0.86rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
@@ -110,7 +110,7 @@ main {
 }
 .page-header p {
   color: var(--muted);
-  font-size: 0.85rem;
+  font-size: 1.02rem;
   line-height: 1.6;
 }
 
@@ -150,16 +150,22 @@ main {
   margin-bottom: 0.75rem;
 }
 .progress-label {
-  font-size: 0.72rem;
+  font-size: 0.86rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
 }
-.progress-pct {
+.progress-pct-follow {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  transform: translateX(50%);
   font-family: var(--fhead);
   font-weight: 800;
-  font-size: 1.4rem;
+  font-size: 2rem;
   color: var(--accent);
+  white-space: nowrap;
+  pointer-events: none;
 }
 .progress-track {
   height: 8px;
@@ -185,7 +191,7 @@ main {
   box-shadow: 0 0 12px 4px rgba(127,255,178,0.5);
 }
 .progress-note {
-  margin-top: 0.6rem;
+  margin-top: 4rem;
   font-size: 0.72rem;
   color: var(--muted);
   letter-spacing: 0.05em;
@@ -368,14 +374,14 @@ main {
 }
 .about-block:last-child { border-bottom: none; }
 .about-block-label {
-  font-size: 0.68rem;
+  font-size: 0.82rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent);
   padding-top: 2px;
 }
 .about-block p {
-  font-size: 0.85rem;
+  font-size: 1.02rem;
   line-height: 1.75;
   color: var(--muted);
 }
@@ -384,7 +390,7 @@ main {
 }
 .about-link {
   color: var(--text);
-  font-size: 0.82rem;
+  font-size: 0.98rem;
   text-decoration: none;
   border-bottom: 1px solid var(--border);
   padding-bottom: 1px;
@@ -410,8 +416,8 @@ main {
 
   /* nav — tighten spacing so About is always visible */
   nav { padding: 0 1rem; }
-  .nav-logo { font-size: 1rem; }
-  .nav-btn { padding: 6px 8px; font-size: 0.68rem; }
+  .nav-logo { font-size: 1.2rem; }
+  .nav-btn { padding: 6px 8px; font-size: 0.82rem; }
 
   /* course cards — 2 per row */
   .courses-grid {
