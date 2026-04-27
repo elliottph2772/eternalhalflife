@@ -111,11 +111,12 @@ function HomePage() {
   const completedCUs = courses.reduce((sum, c) => sum + c.cus, 0)
   const pct = Math.round((completedCUs / WGU_TOTAL_CUS) * 100)
   const [displayPct, setDisplayPct] = useState(0)
+  const [labelPos, setLabelPos] = useState(0)
 
   useEffect(() => {
     let frame
     let startTime = null
-    const duration = 2500
+    const duration = 4000
     function easeOut(t) { return t === 1 ? 1 : 1 - Math.pow(2, -10 * t) }
     const tick = (timestamp) => {
       if (!startTime) startTime = timestamp
@@ -125,6 +126,11 @@ function HomePage() {
     }
     const timeout = setTimeout(() => { frame = requestAnimationFrame(tick) }, 300)
     return () => { clearTimeout(timeout); cancelAnimationFrame(frame) }
+  }, [pct])
+
+  useEffect(() => {
+    const t = setTimeout(() => setLabelPos(pct), 50)
+    return () => clearTimeout(t)
   }, [pct])
 
   useEffect(() => {
@@ -152,10 +158,10 @@ function HomePage() {
           <span className="progress-label">Graduation Progress</span>
         </div>
         <div className="progress-track">
-          <div className="progress-fill" style={{ width: `${displayPct}%` }}>
+          <div className="progress-fill" style={{ width: `${labelPos}%` }}>
             <span className="progress-glow" />
-            <span className="progress-pct-follow">{displayPct}%</span>
           </div>
+          <span className="progress-pct-follow" style={{ left: `${labelPos}%` }}>{displayPct}%</span>
         </div>
         <div className="progress-note">{completedCUs} of {WGU_TOTAL_CUS} CUs completed</div>
       </div>

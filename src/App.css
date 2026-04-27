@@ -157,15 +157,15 @@ main {
 }
 .progress-pct-follow {
   position: absolute;
-  right: 0;
   top: calc(100% + 10px);
-  transform: translateX(50%);
+  transform: translateX(-50%);
   font-family: var(--fhead), sans-serif;
   font-weight: 800;
   font-size: 2rem;
   color: var(--accent);
   white-space: nowrap;
   pointer-events: none;
+  transition: left 4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .progress-track {
   height: 8px;
@@ -180,7 +180,7 @@ main {
   background: linear-gradient(90deg, #3dffa0, #7fffb2);
   border-radius: 99px;
   position: relative;
-  transition: width 2.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: width 4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .progress-glow {
   position: absolute; right: -1px; top: 50%;
@@ -454,7 +454,7 @@ main {
   nav { padding: 0 1rem; }
   .nav-logo { font-size: 0.9rem; }
   .nav-btn { padding: 6px 8px; font-size: 0.82rem; }
-  .progress-pct-follow { font-size: 1.5rem; right: auto; left: 100%; transform: none; }
+  .progress-pct-follow { font-size: 1.5rem; }
 
   /* course cards — 2 per row */
   .courses-grid {
