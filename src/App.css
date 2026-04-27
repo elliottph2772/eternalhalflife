@@ -22,7 +22,7 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: var(--fmono);
+  font-family: var(--fmono), monospace;
   min-height: 100vh;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -51,7 +51,7 @@ nav {
 }
 
 .nav-logo {
-  font-family: var(--fhead);
+  font-family: var(--fhead), sans-serif;
   font-weight: 800;
   font-size: 1.38rem;
   letter-spacing: -0.03em;
@@ -65,7 +65,7 @@ nav {
 
 .nav-btn {
   background: none; border: none;
-  font-family: var(--fmono);
+  font-family: var(--fmono), monospace;
   font-size: 0.86rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -101,7 +101,7 @@ main {
   margin-bottom: 2.5rem;
 }
 .page-header h2 {
-  font-family: var(--fhead);
+  font-family: var(--fhead), sans-serif;
   font-weight: 800;
   font-size: 2.2rem;
   letter-spacing: -0.04em;
@@ -126,7 +126,7 @@ main {
   margin-bottom: 1rem;
 }
 .hero-name {
-  font-family: var(--fhead);
+  font-family: var(--fhead), sans-serif;
   font-weight: 800;
   font-size: clamp(3rem, 8vw, 5.5rem);
   letter-spacing: -0.05em;
@@ -160,7 +160,7 @@ main {
   right: 0;
   top: calc(100% + 10px);
   transform: translateX(50%);
-  font-family: var(--fhead);
+  font-family: var(--fhead), sans-serif;
   font-weight: 800;
   font-size: 2rem;
   color: var(--accent);
@@ -263,7 +263,7 @@ main {
   background: none;
   border: 1px solid var(--accent);
   color: var(--accent);
-  font-family: var(--fmono);
+  font-family: var(--fmono), monospace;
   font-size: 1rem;
   letter-spacing: 0.08em;
   cursor: pointer;
@@ -275,7 +275,7 @@ main {
 .back-btn:hover { background: rgba(127,255,178,0.08); }
 
 .detail-title {
-  font-family: var(--fhead);
+  font-family: var(--fhead), sans-serif;
   font-weight: 800;
   font-size: 2rem;
   letter-spacing: -0.04em;
@@ -335,14 +335,14 @@ main {
   margin-bottom: 0.3rem;
 }
 .project-title {
-  font-family: var(--fhead);
+  font-family: var(--fhead), sans-serif;
   font-weight: 700;
   font-size: 1.25rem;
   letter-spacing: -0.03em;
   color: var(--text);
 }
 .project-num {
-  font-family: var(--fhead);
+  font-family: var(--fhead), sans-serif;
   font-weight: 800;
   font-size: 2rem;
   color: var(--border);

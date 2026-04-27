@@ -178,7 +178,7 @@ function ProjectDetail({ project, onBack }) {
   return (
     <div className="page project-detail-page">
       <button className="back-btn" onClick={onBack}>← Projects</button>
-      <div className="detail-header" style={{ '--accent': project.color }}>
+      <div className="detail-header" style={/** @type {React.CSSProperties} */({ '--accent': project.color })}>
         <div className="detail-tag">{project.tag}</div>
         <h2 className="detail-title">{project.title}</h2>
       </div>
@@ -225,7 +225,7 @@ function ProjectsPage() {
           <div
             className="project-card"
             key={p.id}
-            style={{ '--accent': p.color, cursor: 'pointer' }}
+            style={/** @type {React.CSSProperties} */({ '--accent': p.color, cursor: 'pointer' })}
             onClick={() => setSelected(p)}
           >
             <div className="project-top">
