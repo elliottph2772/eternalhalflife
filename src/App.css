@@ -648,7 +648,7 @@ main {
     padding: 0.5rem 0.5rem 0.25rem;
   }
   .mobile-menu-link {
-    color: var(--muted);
+    color: var(--text);
     text-decoration: none;
     font-family: var(--fmono), monospace;
     font-size: 0.88rem;

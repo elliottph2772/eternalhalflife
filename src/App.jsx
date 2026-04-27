@@ -8,8 +8,10 @@ import { FaDatabase, FaJava } from 'react-icons/fa'
 // ── EMAIL LINK ────────────────────────────────────────────────────────────────
 const EMAIL = 'elliottph2772@gmail.com'
 
-function EmailLink({ className, children = 'Email', onAfterClick, toastPosition = 'bottom' }) {
+function EmailLink({ className, children = 'Email', onAfterClick, toastPosition = 'bottom', clearOn }) {
   const [toast, setToast] = useState(false)
+
+  useEffect(() => { setToast(false) }, [clearOn])
 
   async function handleClick() {
     try {
@@ -388,7 +390,7 @@ export default function App() {
             Eternal<span>Halflife</span>
           </div>
           <div className="nav-links">
-            <EmailLink className="nav-link" toastPosition="top" />
+            <EmailLink className="nav-link" toastPosition="top" clearOn={active} />
             <a href="https://github.com/elliottph2772" className="nav-link" target="_blank" rel="noreferrer">GitHub</a>
             <a href="https://linkedin.com/in/elliotthudson" className="nav-link" target="_blank" rel="noreferrer">LinkedIn</a>
           </div>
