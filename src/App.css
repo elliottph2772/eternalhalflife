@@ -143,7 +143,7 @@ main {
 
 /* ── PROGRESS ────────────────────────────────────────────────────────────────── */
 .progress-section {
-  margin-bottom: 3rem;
+  margin-bottom: 5rem;
 }
 .progress-header {
   display: flex; justify-content: space-between; align-items: baseline;
@@ -189,12 +189,6 @@ main {
   border-radius: 50%;
   background: var(--accent);
   box-shadow: 0 0 12px 4px rgba(127,255,178,0.5);
-}
-.progress-note {
-  margin-top: 4rem;
-  font-size: 0.72rem;
-  color: var(--muted);
-  letter-spacing: 0.05em;
 }
 
 /* ── COURSES GRID ────────────────────────────────────────────────────────────── */
@@ -257,6 +251,45 @@ main {
 .course-term[data-cat="Math"]        { color: #ff9f7f; }
 .course-term[data-cat="Programming"] { color: #5b8fff; }
 .course-term[data-cat="Data"]        { color: #d97fff; }
+
+/* ── TECH STACK ──────────────────────────────────────────────────────────────── */
+.tech-section {
+  margin-bottom: 3rem;
+}
+.tech-section-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.tech-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 2.2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  animation: fadeUp 0.4s ease both;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.tech-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(127,255,178,0.25);
+}
+.tech-name {
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  text-align: center;
+}
 
 /* ── PROJECTS ────────────────────────────────────────────────────────────────── */
 .back-btn {
@@ -401,7 +434,7 @@ main {
   display: flex; flex-direction: column; gap: 0;
 }
 .about-block {
-  padding: 1.6rem 0;
+  padding: 2.5rem 0;
   border-bottom: 1px solid var(--border);
   display: grid;
   grid-template-columns: 140px 1fr;
@@ -410,11 +443,12 @@ main {
 }
 .about-block:last-child { border-bottom: none; }
 .about-block-label {
-  font-size: 0.82rem;
+  font-size: 1rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent);
   padding-top: 2px;
+  text-shadow: 0 0 10px rgba(127,255,178,0.55), 0 0 22px rgba(127,255,178,0.25);
 }
 .about-block p {
   font-size: 1.02rem;

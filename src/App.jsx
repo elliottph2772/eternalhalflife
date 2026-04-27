@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import WGUPSDemo from './WGUPSDemo.jsx'
+import { SiPython, SiReact, SiJavascript, SiHtml5, SiGit, SiLinux, SiVite, SiThreedotjs, SiCplusplus, SiNodedotjs } from 'react-icons/si'
+import { FaDatabase, FaJava } from 'react-icons/fa'
 
 // ── DATA ──────────────────────────────────────────────────────────────────────
 
@@ -105,6 +107,21 @@ const projects = [
   },
 ]
 
+const techStack = [
+  { name: 'Python',      Icon: SiPython,      color: '#3776ab' },
+  { name: 'Java',        Icon: FaJava,        color: '#f89820' },
+  { name: 'React',       Icon: SiReact,       color: '#61dafb' },
+  { name: 'JavaScript',  Icon: SiJavascript,  color: '#f7df1e' },
+  { name: 'HTML & CSS',  Icon: SiHtml5,       color: '#e34f26' },
+  { name: 'SQL',         Icon: FaDatabase,    color: '#4479a1' },
+  { name: 'Git',         Icon: SiGit,         color: '#f05032' },
+  { name: 'Linux',       Icon: SiLinux,       color: '#fcc624' },
+  { name: 'Vite',        Icon: SiVite,        color: '#646cff' },
+  { name: 'Three.js',    Icon: SiThreedotjs,  color: '#049ef4' },
+  { name: 'C++',         Icon: SiCplusplus,   color: '#00599c' },
+  { name: 'Node.js',     Icon: SiNodedotjs,   color: '#339933' },
+]
+
 // ── PAGES ─────────────────────────────────────────────────────────────────────
 
 function HomePage() {
@@ -155,7 +172,7 @@ function HomePage() {
 
       <div className="progress-section">
         <div className="progress-header">
-          <span className="progress-label">Graduation Progress</span>
+          <span className="progress-label">Graduation Progress — {completedCUs} of {WGU_TOTAL_CUS} CUs completed</span>
         </div>
         <div className="progress-track">
           <div className="progress-fill" style={{ width: `${labelPos}%` }}>
@@ -163,27 +180,16 @@ function HomePage() {
           </div>
           <span className="progress-pct-follow" style={{ left: `${labelPos}%` }}>{displayPct}%</span>
         </div>
-        <div className="progress-note">{completedCUs} of {WGU_TOTAL_CUS} CUs completed</div>
       </div>
 
-      <div className="courses-grid">
-        {courses.map((c, i) => (
-          <div className="course-card" key={i} style={{ animationDelay: `${i * 60}ms` }}>
-            <div className="course-term" data-cat={c.term}>{c.term}</div>
-            <div className="course-name">{c.name}</div>
-            <div className="course-footer">
-              <span className="course-cus">{c.cus} CUs</span>
-              <span className="badge pass">{c.grade}</span>
+      <div className="tech-section">
+        <div className="tech-grid">
+          {techStack.map((t, i) => (
+            <div className="tech-card" key={t.name} style={{ animationDelay: `${i * 60}ms` }}>
+              <t.Icon size={52} color={t.color} />
+              <div className="tech-name">{t.name}</div>
             </div>
-          </div>
-        ))}
-        <div className="course-card course-remaining">
-          <div className="course-term">Remaining</div>
-          <div className="course-name">{WGU_TOTAL_CUS - completedCUs} CUs to graduation</div>
-          <div className="course-footer">
-            <span className="course-cus">{WGU_TOTAL_CUS} total</span>
-            <span className="badge upcoming">In Progress</span>
-          </div>
+          ))}
         </div>
       </div>
 
@@ -282,11 +288,44 @@ function ProjectsPage() {
 }
 
 
+function CoursesPage() {
+  const completedCUs = courses.reduce((sum, c) => sum + c.cus, 0)
+  return (
+    <div className="page courses-page">
+      <div className="page-header">
+        <h2>Courses</h2>
+        <p>{completedCUs} of {WGU_TOTAL_CUS} CUs completed</p>
+      </div>
+      <div className="courses-grid">
+        {courses.map((c, i) => (
+          <div className="course-card" key={i} style={{ animationDelay: `${i * 60}ms` }}>
+            <div className="course-term" data-cat={c.term}>{c.term}</div>
+            <div className="course-name">{c.name}</div>
+            <div className="course-footer">
+              <span className="course-cus">{c.cus} CUs</span>
+              <span className="badge pass">{c.grade}</span>
+            </div>
+          </div>
+        ))}
+        <div className="course-card course-remaining">
+          <div className="course-term">Remaining</div>
+          <div className="course-name">{WGU_TOTAL_CUS - completedCUs} CUs to graduation</div>
+          <div className="course-footer">
+            <span className="course-cus">{WGU_TOTAL_CUS} total</span>
+            <span className="badge upcoming">In Progress</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 // ── ROOT ──────────────────────────────────────────────────────────────────────
 
 const TABS = [
   { id: 'home',     label: 'Home',     Page: HomePage     },
   { id: 'projects', label: 'Projects', Page: ProjectsPage },
+  { id: 'courses',  label: 'Courses',  Page: CoursesPage  },
 ]
 
 export default function App() {
