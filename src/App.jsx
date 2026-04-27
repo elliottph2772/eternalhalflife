@@ -133,7 +133,7 @@ function HomePage() {
         <div className="hero-tag">B.S. Computer Science · WGU</div>
         <h1 className="hero-name">Elliott Hudson</h1>
         <p className="hero-sub">
-          Eternal HalfLife — Carving the way for a better Future.
+          Eternal HalfLife — Some Things Fade, But Hard Work Remains.
         </p>
       </div>
 
