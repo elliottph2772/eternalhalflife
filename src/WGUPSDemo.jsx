@@ -204,7 +204,7 @@ export default function WGUPSDemo() {
     <div style={{ background: '#0a0a0f', borderRadius: '8px', overflow: 'hidden', fontFamily: "'Courier New', monospace" }}>
       <style>{`@keyframes wgups-blink { 50% { opacity: 0; } }`}</style>
 
-      <div style={{ color: '#55556e', fontSize: '11px', letterSpacing: '0.12em', textTransform: 'uppercase', textAlign: 'center', padding: '14px 20px 0' }}>
+      <div style={{ color: '#55556e', fontSize: '17px', letterSpacing: '0.12em', textTransform: 'uppercase', textAlign: 'center', padding: '14px 20px 0' }}>
         {labels[stage]}
       </div>
 
@@ -269,10 +269,10 @@ export default function WGUPSDemo() {
 
       {/* NAV */}
       <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', padding: '14px 20px 18px' }}>
-        <button onClick={() => goTo(Math.max(0, stage - 1))} style={{ background: 'none', border: '1px solid #2a2a3a', borderRadius: '4px', color: stage === 0 ? '#2a2a3a' : '#55556e', fontFamily: "'Courier New', monospace", fontSize: '11px', letterSpacing: '0.08em', padding: '6px 16px', cursor: stage === 0 ? 'default' : 'pointer' }}>
+        <button onClick={() => goTo(Math.max(0, stage - 1))} style={{ background: 'none', border: '1px solid #2a2a3a', borderRadius: '4px', color: stage === 0 ? '#2a2a3a' : '#d0d0e0', fontFamily: "'Courier New', monospace", fontSize: '17px', letterSpacing: '0.08em', padding: '8px 22px', cursor: stage === 0 ? 'default' : 'pointer', boxShadow: stage === 0 ? 'none' : '0 0 8px rgba(255,255,255,0.15), 0 0 18px rgba(255,255,255,0.07)' }}>
           ← prev
         </button>
-        <button onClick={() => goTo(Math.min(3, stage + 1))} style={{ background: 'none', border: '1px solid #2a2a3a', borderRadius: '4px', color: stage === 3 ? '#2a2a3a' : '#55556e', fontFamily: "'Courier New', monospace", fontSize: '11px', letterSpacing: '0.08em', padding: '6px 16px', cursor: stage === 3 ? 'default' : 'pointer' }}>
+        <button onClick={() => goTo(Math.min(3, stage + 1))} style={{ background: 'none', border: '1px solid #2a2a3a', borderRadius: '4px', color: stage === 3 ? '#2a2a3a' : '#d0d0e0', fontFamily: "'Courier New', monospace", fontSize: '17px', letterSpacing: '0.08em', padding: '8px 22px', cursor: stage === 3 ? 'default' : 'pointer', boxShadow: stage === 3 ? 'none' : '0 0 8px rgba(255,255,255,0.15), 0 0 18px rgba(255,255,255,0.07)' }}>
           next →
         </button>
       </div>
