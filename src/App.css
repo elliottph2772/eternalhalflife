@@ -119,7 +119,7 @@ main {
   margin-bottom: 3.5rem;
 }
 .hero-tag {
-  font-size: 0.72rem;
+  font-size: 1.08rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent);
@@ -136,9 +136,8 @@ main {
 }
 .hero-sub {
   color: var(--muted);
-  font-size: 0.88rem;
+  font-size: 1.06rem;
   line-height: 1.75;
-  max-width: 480px;
 }
 
 /* ── PROGRESS ────────────────────────────────────────────────────────────────── */
