@@ -14,10 +14,24 @@ function EmailLink({ className, children = 'Email', onAfterClick, toastPosition 
   async function handleClick() {
     try {
       await navigator.clipboard.writeText(EMAIL)
-      setToast(true)
-      setTimeout(() => setToast(false), 5500)
     } catch { /* clipboard unavailable */ }
     onAfterClick?.()
+
+    let mailClientOpened = false
+    const onBlur = () => { mailClientOpened = true }
+    const onHide = () => { if (document.visibilityState === 'hidden') mailClientOpened = true }
+
+    window.addEventListener('blur', onBlur)
+    document.addEventListener('visibilitychange', onHide)
+
+    setTimeout(() => {
+      window.removeEventListener('blur', onBlur)
+      document.removeEventListener('visibilitychange', onHide)
+      if (!mailClientOpened) {
+        setToast(true)
+        setTimeout(() => setToast(false), 5500)
+      }
+    }, 500)
   }
 
   return (
