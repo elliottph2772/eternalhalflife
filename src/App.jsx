@@ -172,7 +172,7 @@ function HomePage() {
 
       <div className="progress-section">
         <div className="progress-header">
-          <span className="progress-label">Graduation Progress — {completedCUs} of {WGU_TOTAL_CUS} CUs completed</span>
+          <span className="progress-label">Graduation Progress — {completedCUs} of {WGU_TOTAL_CUS} CREDITS COMPLETED</span>
         </div>
         <div className="progress-track">
           <div className="progress-fill" style={{ width: `${labelPos}%` }}>
