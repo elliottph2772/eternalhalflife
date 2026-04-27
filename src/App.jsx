@@ -127,6 +127,16 @@ function HomePage() {
     return () => { clearTimeout(timeout); cancelAnimationFrame(frame) }
   }, [pct])
 
+  useEffect(() => {
+    const els = document.querySelectorAll('.reveal')
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') }),
+      { threshold: 0.12 }
+    )
+    els.forEach(el => observer.observe(el))
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <div className="page home-page">
       <div className="hero">
@@ -170,6 +180,25 @@ function HomePage() {
           </div>
         </div>
       </div>
+
+      <div className="home-about">
+        {[
+          { label: 'Currently', text: 'B.S. Computer Science student at Western Governors University. Building foundational skills in software engineering.' },
+          { label: 'Interests', text: 'Coding, Gaming, PC hardware, AI Integration and The Detroit Lions.' },
+          { label: 'Looking For', text: 'Tech internships or Junior Software engineering roles where I can contribute real work while finishing my degree.' },
+        ].map((b, i) => (
+          <div className="about-block reveal" key={b.label} style={{ transitionDelay: `${i * 0.13}s` }}>
+            <div className="about-block-label">{b.label}</div>
+            <p>{b.text}</p>
+          </div>
+        ))}
+      </div>
+
+      <footer className="home-footer reveal" style={{ transitionDelay: '0.39s' }}>
+        <a href="mailto:elliottph2772@gmail.com" className="about-link">Email</a>
+        <a href="https://github.com/elliottph2772" className="about-link" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://linkedin.com/in/elliotthudson" className="about-link" target="_blank" rel="noreferrer">LinkedIn</a>
+      </footer>
     </div>
   )
 }
@@ -247,51 +276,11 @@ function ProjectsPage() {
 }
 
 
-function AboutPage() {
-  return (
-    <div className="page about-page">
-      <div className="page-header">
-        <h2>About</h2>
-      </div>
-      <div className="about-grid">
-        {[
-          {
-            label: 'Currently',
-            text: 'B.S. Computer Science student at Western Governors University. Building foundational skills in software engineering.',
-          },
-          {
-            label: 'Interests',
-            text: 'Coding, Gaming, PC hardware, AI Integration and The Detroit Lions.',
-          },
-          {
-            label: 'Looking For',
-            text: 'Tech internships or Junior Software engineering roles where I can contribute real work while finishing my degree.',
-          },
-        ].map((b) => (
-          <div className="about-block" key={b.label}>
-            <div className="about-block-label">{b.label}</div>
-            <p>{b.text}</p>
-          </div>
-        ))}
-        <div className="about-block">
-          <div className="about-block-label">Contact</div>
-          <div className="about-links">
-            <a href="mailto:elliottph2772@gmail.com" className="about-link">Email</a>
-            <a href="https://github.com/elliottph2772" className="about-link" target="_blank" rel="noreferrer">GitHub</a>
-            <a href="https://linkedin.com/in/elliotthudson" className="about-link" target="_blank" rel="noreferrer">LinkedIn</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
-
 // ── ROOT ──────────────────────────────────────────────────────────────────────
 
 const TABS = [
   { id: 'home',     label: 'Home',     Page: HomePage     },
   { id: 'projects', label: 'Projects', Page: ProjectsPage },
-  { id: 'about',    label: 'About',    Page: AboutPage    },
 ]
 
 export default function App() {

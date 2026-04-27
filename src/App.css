@@ -370,6 +370,32 @@ main {
 }
 
 
+/* ── SCROLL REVEAL ───────────────────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── HOME ABOUT + FOOTER ─────────────────────────────────────────────────────── */
+.home-about {
+  margin-top: 3rem;
+  border-top: 1px solid var(--border);
+}
+.home-footer {
+  margin-top: 2rem;
+  padding: 2rem 0 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
 /* ── ABOUT ───────────────────────────────────────────────────────────────────── */
 .about-grid {
   display: flex; flex-direction: column; gap: 0;
@@ -400,7 +426,7 @@ main {
 }
 .about-link {
   color: var(--text);
-  font-size: 0.98rem;
+  font-size: 1.18rem;
   text-decoration: none;
   border-bottom: 1px solid var(--border);
   padding-bottom: 1px;
@@ -428,7 +454,7 @@ main {
   nav { padding: 0 1rem; }
   .nav-logo { font-size: 0.9rem; }
   .nav-btn { padding: 6px 8px; font-size: 0.82rem; }
-  .progress-pct-follow { font-size: 1.5rem; }
+  .progress-pct-follow { font-size: 1.5rem; right: auto; left: 100%; transform: none; }
 
   /* course cards — 2 per row */
   .courses-grid {
