@@ -9,7 +9,7 @@
   --accent:   #7fffb2;
   --accent2:  #5b8fff;
   --text:     #e8e8f0;
-  --muted:    #55556e;
+  --muted:    #8888a8;
   --fhead:    'Syne', sans-serif;
   --fmono:    'Space Mono', monospace;
   --r:        6px;
@@ -73,9 +73,10 @@ nav {
   cursor: pointer;
   padding: 6px 14px;
   border-radius: var(--r);
-  transition: color 0.15s, background 0.15s;
+  text-shadow: 0 0 10px rgba(255,255,255,0.25);
+  transition: color 0.15s, background 0.15s, transform 0.15s;
 }
-.nav-btn:hover  { color: var(--text); background: rgba(255,255,255,0.04); }
+.nav-btn:hover  { color: var(--accent); background: none; }
 .nav-btn.active { color: var(--accent); background: rgba(127,255,178,0.07); }
 
 /* ── MAIN ────────────────────────────────────────────────────────────────────── */
@@ -425,8 +426,9 @@ main {
 
   /* nav — tighten spacing so About is always visible */
   nav { padding: 0 1rem; }
-  .nav-logo { font-size: 1.2rem; }
+  .nav-logo { font-size: 0.9rem; }
   .nav-btn { padding: 6px 8px; font-size: 0.82rem; }
+  .progress-pct-follow { font-size: 1.5rem; }
 
   /* course cards — 2 per row */
   .courses-grid {
