@@ -230,10 +230,10 @@ export default function WGUPSDemo() {
             {truckColors.map((color, i) => (
               <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
                 <div style={{ color: '#55556e', fontSize: '10px', letterSpacing: '0.1em', textTransform: 'uppercase' }}>{truckNames[i]}</div>
-                <div style={{ transform: dispatched ? 'translateX(380px)' : 'none', transition: dispatched ? `transform 1.4s cubic-bezier(0.16,1,0.3,1) ${i * 0.35}s` : 'none' }}>
+                <div style={{ transform: dispatched ? 'translateX(900px)' : 'none', transition: dispatched ? 'transform 10s cubic-bezier(0.16,1,0.3,1)' : 'none' }}>
                   <TruckSVG color={color} />
+                  <div style={{ color: '#7fffb2', fontSize: '13px', textAlign: 'center', minWidth: '60px', marginTop: '4px' }}>{pkgs[i]} pkgs</div>
                 </div>
-                <div style={{ color: '#7fffb2', fontSize: '13px', textAlign: 'center', minWidth: '60px' }}>{pkgs[i]} pkgs</div>
               </div>
             ))}
           </div>

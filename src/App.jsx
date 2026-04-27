@@ -102,7 +102,7 @@ const projects = [
     tag: 'You Never Know What The Future May Hold',
     description:
       'Always working on the next project, Stay Tuned!',
-    highlights: ['Coding', 'Gaming', 'Sports'],
+    highlights: ['Coding ?', 'Gaming ?', 'Sports ?'],
     color: '#ff7fb2',
   },
 ]
