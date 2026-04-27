@@ -1,6 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
-import { OrbitControls, Torus, Box, Sphere, MeshDistortMaterial } from '@react-three/drei'
+import { useState, useEffect } from 'react'
 import './App.css'
 import WGUPSDemo from './WGUPSDemo.jsx'
 
@@ -104,94 +102,6 @@ const projects = [
       'Always working on the next project, Stay Tuned!',
     highlights: ['Coding ?', 'Gaming ?', 'Sports ?'],
     color: '#ff7fb2',
-  },
-]
-
-// ── 3D SCENES ─────────────────────────────────────────────────────────────────
-
-function RotatingTorus() {
-  const ref = useRef()
-  useFrame(({ clock }) => {
-    ref.current.rotation.x = clock.elapsedTime * 0.4
-    ref.current.rotation.y = clock.elapsedTime * 0.6
-  })
-  return (
-    <Torus ref={ref} args={[1, 0.35, 32, 100]}>
-      <MeshDistortMaterial color="#7fffb2" distort={0.3} speed={2} roughness={0.1} metalness={0.8} />
-    </Torus>
-  )
-}
-
-function FloatingCube() {
-  const ref = useRef()
-  useFrame(({ clock }) => {
-    ref.current.rotation.x = clock.elapsedTime * 0.5
-    ref.current.rotation.z = clock.elapsedTime * 0.3
-    ref.current.position.y = Math.sin(clock.elapsedTime * 0.8) * 0.3
-  })
-  return (
-    <Box ref={ref} args={[1.6, 1.6, 1.6]}>
-      <meshStandardMaterial color="#5b8fff" roughness={0.05} metalness={0.9} />
-    </Box>
-  )
-}
-
-function PulseSphere() {
-  const ref = useRef()
-  useFrame(({ clock }) => {
-    const s = 1 + Math.sin(clock.elapsedTime * 1.5) * 0.15
-    ref.current.scale.set(s, s, s)
-    ref.current.rotation.y = clock.elapsedTime * 0.4
-  })
-  return (
-    <Sphere ref={ref} args={[1, 64, 64]}>
-      <MeshDistortMaterial color="#ff7fb2" distort={0.5} speed={3} roughness={0.0} metalness={0.6} />
-    </Sphere>
-  )
-}
-
-const MODEL_SCENES = [
-  {
-    label: 'Torus',
-    hint: 'Drag to orbit · scroll to zoom',
-    bg: '#0d1a14',
-    scene: (
-      <Canvas camera={{ position: [0, 0, 4] }}>
-        <ambientLight intensity={0.4} />
-        <pointLight position={[5, 5, 5]} intensity={1.5} color="#7fffb2" />
-        <pointLight position={[-5, -5, -5]} intensity={0.8} color="#5b8fff" />
-        <RotatingTorus />
-        <OrbitControls enableZoom enablePan={false} />
-      </Canvas>
-    ),
-  },
-  {
-    label: 'Cube',
-    hint: 'Drag to orbit · scroll to zoom',
-    bg: '#0d0f1a',
-    scene: (
-      <Canvas camera={{ position: [0, 0, 4] }}>
-        <ambientLight intensity={0.3} />
-        <pointLight position={[5, 5, 5]} intensity={2} color="#ffffff" />
-        <pointLight position={[-4, 2, -4]} intensity={1} color="#5b8fff" />
-        <FloatingCube />
-        <OrbitControls enableZoom enablePan={false} />
-      </Canvas>
-    ),
-  },
-  {
-    label: 'Sphere',
-    hint: 'Drag to orbit · scroll to zoom',
-    bg: '#1a0d13',
-    scene: (
-      <Canvas camera={{ position: [0, 0, 4] }}>
-        <ambientLight intensity={0.3} />
-        <pointLight position={[4, 4, 4]} intensity={1.5} color="#ff7fb2" />
-        <pointLight position={[-4, -4, 4]} intensity={0.8} color="#7fffb2" />
-        <PulseSphere />
-        <OrbitControls enableZoom enablePan={false} />
-      </Canvas>
-    ),
   },
 ]
 
@@ -336,34 +246,6 @@ function ProjectsPage() {
   )
 }
 
-function ModelsPage() {
-  const [active, setActive] = useState(0)
-  const m = MODEL_SCENES[active]
-
-  return (
-    <div className="page models-page">
-      <div className="page-header">
-        <h2>3D Models</h2>
-        <p>Interactive Three.js scenes — drag to orbit, scroll to zoom.</p>
-      </div>
-      <div className="model-switcher">
-        {MODEL_SCENES.map((s, i) => (
-          <button
-            key={i}
-            className={`model-switch-btn ${active === i ? 'active' : ''}`}
-            onClick={() => setActive(i)}
-          >
-            {s.label}
-          </button>
-        ))}
-      </div>
-      <div className="canvas-wrapper" style={{ background: m.bg }}>
-        {m.scene}
-        <div className="canvas-hint">{m.hint}</div>
-      </div>
-    </div>
-  )
-}
 
 function AboutPage() {
   return (
@@ -409,7 +291,6 @@ function AboutPage() {
 const TABS = [
   { id: 'home',     label: 'Home',     Page: HomePage     },
   { id: 'projects', label: 'Projects', Page: ProjectsPage },
-  // { id: 'models',   label: '3D',       Page: ModelsPage   },
   { id: 'about',    label: 'About',    Page: AboutPage    },
 ]
 

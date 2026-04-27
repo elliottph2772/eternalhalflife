@@ -369,44 +369,6 @@ main {
   color: var(--muted);
 }
 
-/* ── 3D MODELS ───────────────────────────────────────────────────────────────── */
-.model-switcher {
-  display: flex; gap: 0.5rem;
-  margin-bottom: 1.25rem;
-}
-.model-switch-btn {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r);
-  font-family: var(--fmono);
-  font-size: 0.75rem;
-  letter-spacing: 0.07em;
-  color: var(--muted);
-  padding: 8px 18px;
-  cursor: pointer;
-  transition: color 0.15s, border-color 0.15s, background 0.15s;
-}
-.model-switch-btn:hover  { color: var(--text); border-color: var(--muted); }
-.model-switch-btn.active { color: var(--accent); border-color: var(--accent); background: rgba(127,255,178,0.05); }
-
-.canvas-wrapper {
-  position: relative;
-  height: 460px;
-  border-radius: var(--r);
-  border: 1px solid var(--border);
-  overflow: hidden;
-  transition: background 0.4s;
-}
-.canvas-hint {
-  position: absolute;
-  bottom: 14px; left: 50%; transform: translateX(-50%);
-  font-size: 0.65rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.2);
-  pointer-events: none;
-  white-space: nowrap;
-}
 
 /* ── ABOUT ───────────────────────────────────────────────────────────────────── */
 .about-grid {
@@ -475,6 +437,4 @@ main {
   /* about layout — stack label above text */
   .about-block { grid-template-columns: 1fr; gap: 0.4rem; }
 
-  /* 3D canvas shorter on mobile */
-  .canvas-wrapper { height: 320px; }
 }
