@@ -85,11 +85,12 @@ function Typewriter({ lines, onDone }) {
   const timers = useRef([])
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setRendered([])
     timers.current.forEach(clearTimeout)
     timers.current = []
     let cum = 0
-    lines.forEach((l, i) => {
+    lines.forEach((l) => {
       cum += l.delay
       const t = setTimeout(() => {
         setRendered(prev => [...prev, l])
@@ -99,7 +100,7 @@ function Typewriter({ lines, onDone }) {
     const done = setTimeout(() => { if (onDone) onDone() }, cum + 400)
     timers.current.push(done)
     return () => timers.current.forEach(clearTimeout)
-  }, [lines])
+  }, [lines, onDone])
 
   useEffect(() => {
     if (bodyRef.current) bodyRef.current.scrollTop = bodyRef.current.scrollHeight
@@ -174,6 +175,7 @@ export default function WGUPSDemo() {
       })
     }
     if (stage === 2) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setPkgs([16, 16, 8])
       const t = setTimeout(() => setDispatched(true), 400)
       timers.current.push(t)
