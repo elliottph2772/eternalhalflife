@@ -498,4 +498,9 @@ main {
   /* about layout — stack label above text */
   .about-block { grid-template-columns: 1fr; gap: 0.4rem; }
 
+  /* tech stack — 2 columns on mobile so cards don't overflow */
+  .tech-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
 }
