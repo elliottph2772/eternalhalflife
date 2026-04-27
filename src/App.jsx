@@ -8,10 +8,8 @@ import { FaDatabase, FaJava } from 'react-icons/fa'
 // ── EMAIL LINK ────────────────────────────────────────────────────────────────
 const EMAIL = 'elliottph2772@gmail.com'
 
-function EmailLink({ className, children = 'Email', onAfterClick, toastPosition = 'bottom', clearOn }) {
+function EmailLink({ className, children = 'Email', onAfterClick, toastPosition = 'bottom' }) {
   const [toast, setToast] = useState(false)
-
-  useEffect(() => { setToast(false) }, [clearOn])
 
   async function handleClick() {
     try {
@@ -218,10 +216,10 @@ function HomePage() {
 
       <div className="tech-section">
         <div className="tech-grid">
-          {techStack.map((t, i) => (
-            <div className="tech-card" key={t.name} style={{ animationDelay: `${i * 60}ms` }}>
-              <t.Icon size={52} color={t.color} />
-              <div className="tech-name">{t.name}</div>
+          {techStack.map(({ name, Icon, color }, i) => (
+            <div className="tech-card" key={name} style={{ animationDelay: `${i * 60}ms` }}>
+              <Icon size={52} color={color} />
+              <div className="tech-name">{name}</div>
             </div>
           ))}
         </div>
@@ -320,6 +318,14 @@ function ProjectsPage({ selected, setSelected }) {
 }
 
 
+const CAT_COLORS = {
+  'Gen Ed':      '#ffd97f',
+  'Core':        '#7fffb2',
+  'Math':        '#ff9f7f',
+  'Programming': '#5b8fff',
+  'Data':        '#d97fff',
+}
+
 function CoursesPage() {
   const completedCUs = courses.reduce((sum, c) => sum + c.cus, 0)
   return (
@@ -330,7 +336,7 @@ function CoursesPage() {
       </div>
       <div className="courses-grid">
         {courses.map((c, i) => (
-          <div className="course-card" key={i} style={{ animationDelay: `${i * 60}ms` }}>
+          <div className="course-card" key={i} style={/** @type {React.CSSProperties} */({ animationDelay: `${i * 60}ms`, '--cat-color': CAT_COLORS[c.term] })}>
             <div className="course-term" data-cat={c.term}>{c.term}</div>
             <div className="course-name">{c.name}</div>
             <div className="course-footer">
@@ -390,7 +396,7 @@ export default function App() {
             Eternal<span>Halflife</span>
           </div>
           <div className="nav-links">
-            <EmailLink className="nav-link" toastPosition="top" clearOn={active} />
+            <EmailLink key={active} className="nav-link" toastPosition="top" />
             <a href="https://github.com/elliottph2772" className="nav-link" target="_blank" rel="noreferrer">GitHub</a>
             <a href="https://linkedin.com/in/elliotthudson" className="nav-link" target="_blank" rel="noreferrer">LinkedIn</a>
           </div>

@@ -217,6 +217,7 @@ main {
 }
 
 .course-card {
+  --cat-color: #7fffb2;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--r);
@@ -226,7 +227,7 @@ main {
   transition: border-color 0.15s, transform 0.15s;
 }
 .course-card:hover {
-  border-color: rgba(127,255,178,0.25);
+  border-color: color-mix(in srgb, var(--cat-color) 45%, transparent);
   transform: translateY(-2px);
 }
 .course-remaining {
