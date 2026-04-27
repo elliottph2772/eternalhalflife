@@ -1,8 +1,40 @@
 import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import './App.css'
 import WGUPSDemo from './WGUPSDemo.jsx'
 import { SiPython, SiReact, SiJavascript, SiHtml5, SiGit, SiLinux, SiVite, SiThreedotjs, SiCplusplus, SiNodedotjs } from 'react-icons/si'
 import { FaDatabase, FaJava } from 'react-icons/fa'
+
+// ── EMAIL LINK ────────────────────────────────────────────────────────────────
+const EMAIL = 'elliottph2772@gmail.com'
+
+function EmailLink({ className, children = 'Email', onAfterClick, toastPosition = 'bottom' }) {
+  const [toast, setToast] = useState(false)
+
+  async function handleClick() {
+    try {
+      await navigator.clipboard.writeText(EMAIL)
+      setToast(true)
+      setTimeout(() => setToast(false), 5500)
+    } catch { /* clipboard unavailable */ }
+    onAfterClick?.()
+  }
+
+  return (
+    <>
+      <a href={`mailto:${EMAIL}`} className={className} onClick={handleClick}>
+        {children}
+      </a>
+      {toast && createPortal(
+        <div className={`email-toast${toastPosition === 'top' ? ' email-toast--top' : ''}`}>
+          <div className="email-toast-title">Email Copied</div>
+          <p className="email-toast-body">Go to your email service of choice and paste it.</p>
+        </div>,
+        document.body
+      )}
+    </>
+  )
+}
 
 // ── DATA ──────────────────────────────────────────────────────────────────────
 
@@ -207,7 +239,7 @@ function HomePage() {
       </div>
 
       <footer className="home-footer reveal" style={{ transitionDelay: '0.39s' }}>
-        <a href="mailto:elliottph2772@gmail.com" className="about-link">Email</a>
+        <EmailLink className="about-link" />
         <a href="https://github.com/elliottph2772" className="about-link" target="_blank" rel="noreferrer">GitHub</a>
         <a href="https://linkedin.com/in/elliotthudson" className="about-link" target="_blank" rel="noreferrer">LinkedIn</a>
       </footer>
@@ -248,9 +280,7 @@ function ProjectDetail({ project, onBack }) {
   )
 }
 
-function ProjectsPage() {
-  const [selected, setSelected] = useState(null)
-
+function ProjectsPage({ selected, setSelected }) {
   if (selected) {
     return <ProjectDetail project={selected} onBack={() => setSelected(null)} />
   }
@@ -330,28 +360,81 @@ const TABS = [
 
 export default function App() {
   const [active, setActive] = useState('home')
-  const {Page} = TABS.find((t) => t.id === active)
+  const [selectedProject, setSelectedProject] = useState(null)
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  function handleTabClick(id) {
+    setMenuOpen(false)
+    if (id === 'projects' && active === 'projects' && selectedProject) {
+      setSelectedProject(null)
+    } else {
+      setActive(id)
+      if (id !== 'projects') setSelectedProject(null)
+    }
+  }
+
+  function renderPage() {
+    if (active === 'projects') {
+      return <ProjectsPage selected={selectedProject} setSelected={setSelectedProject} />
+    }
+    const { Page } = TABS.find((t) => t.id === active)
+    return <Page />
+  }
 
   return (
       <>
         <nav>
-          <div className="nav-logo" onClick={() => setActive('home')} style={{cursor: 'pointer'}}>
+          <div className="nav-logo" onClick={() => { setActive('home'); setSelectedProject(null); setMenuOpen(false) }} style={{cursor: 'pointer'}}>
             Eternal<span>Halflife</span>
+          </div>
+          <div className="nav-links">
+            <EmailLink className="nav-link" toastPosition="top" />
+            <a href="https://github.com/elliottph2772" className="nav-link" target="_blank" rel="noreferrer">GitHub</a>
+            <a href="https://linkedin.com/in/elliotthudson" className="nav-link" target="_blank" rel="noreferrer">LinkedIn</a>
           </div>
           <ul className="nav-tabs">
             {TABS.map((t) => (
                 <li key={t.id} className={t.id === 'home' ? 'hide-on-mobile' : ''}>
                   <button
                       className={`nav-btn ${active === t.id ? 'active' : ''}`}
-                      onClick={() => setActive(t.id)}
+                      onClick={() => handleTabClick(t.id)}
                   >
                     {t.label}
                   </button>
                 </li>
             ))}
           </ul>
+          <button
+            className={`hamburger${menuOpen ? ' open' : ''}`}
+            onClick={() => setMenuOpen(o => !o)}
+            aria-label="Toggle menu"
+          >
+            <span /><span /><span />
+          </button>
         </nav>
-        <main><Page/></main>
+
+        {menuOpen && (
+          <>
+            <div className="mobile-menu-backdrop" onClick={() => setMenuOpen(false)} />
+            <div className="mobile-menu">
+              {TABS.filter(t => t.id !== 'home').map(t => (
+                <button
+                  key={t.id}
+                  className={`mobile-menu-btn${active === t.id ? ' active' : ''}`}
+                  onClick={() => handleTabClick(t.id)}
+                >
+                  {t.label}
+                </button>
+              ))}
+              <div className="mobile-menu-divider" />
+              <EmailLink className="mobile-menu-link" onAfterClick={() => setMenuOpen(false)} toastPosition="top" />
+              <a href="https://github.com/elliottph2772" className="mobile-menu-link" target="_blank" rel="noreferrer" onClick={() => setMenuOpen(false)}>GitHub</a>
+              <a href="https://linkedin.com/in/elliotthudson" className="mobile-menu-link" target="_blank" rel="noreferrer" onClick={() => setMenuOpen(false)}>LinkedIn</a>
+            </div>
+          </>
+        )}
+
+        <main>{renderPage()}</main>
       </>
   )
 }

@@ -59,6 +59,24 @@ nav {
 }
 .nav-logo span { color: var(--text); }
 
+.nav-links {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1.75rem;
+  align-items: center;
+}
+.nav-link {
+  color: var(--muted);
+  text-decoration: none;
+  font-family: var(--fmono), monospace;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  transition: color 0.15s;
+}
+.nav-link:hover { color: var(--accent); }
+
 .nav-tabs {
   display: flex; gap: 2px; list-style: none;
 }
@@ -468,6 +486,85 @@ main {
 }
 .about-link:hover { color: var(--accent); border-color: var(--accent); }
 
+/* ── EMAIL TOAST ─────────────────────────────────────────────────────────────── */
+.email-toast {
+  position: fixed;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  min-width: 290px;
+  max-width: 400px;
+  background: var(--surface);
+  border: 1px solid var(--accent);
+  border-radius: var(--r);
+  padding: 1.25rem 1.6rem;
+  box-shadow: 0 0 28px rgba(127,255,178,0.12), 0 8px 32px rgba(0,0,0,0.5);
+  backdrop-filter: blur(20px);
+  animation: toastUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+  text-align: center;
+}
+.email-toast--top {
+  bottom: unset;
+  top: calc(var(--nav-h) + 1rem);
+  animation: toastDown 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.email-toast-title {
+  font-family: var(--fmono), monospace;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--accent);
+  text-shadow: 0 0 12px rgba(127,255,178,0.45);
+  margin-bottom: 0.45rem;
+}
+.email-toast-body {
+  font-size: 0.82rem;
+  line-height: 1.65;
+  color: var(--muted);
+}
+@keyframes toastUp {
+  from { opacity: 0; transform: translateX(-50%) translateY(14px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0);    }
+}
+@keyframes toastDown {
+  from { opacity: 0; transform: translateX(-50%) translateY(-14px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0);     }
+}
+
+/* ── HAMBURGER ───────────────────────────────────────────────────────────────── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform 0.22s ease, opacity 0.22s ease;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── MOBILE MENU ─────────────────────────────────────────────────────────────── */
+.mobile-menu-backdrop {
+  display: none;
+}
+.mobile-menu {
+  display: none;
+}
+
 /* ── RESPONSIVE ──────────────────────────────────────────────────────────────── */
 @media (max-width: 600px) {
   .page { padding: 2rem 1.2rem 4rem; }
@@ -481,14 +578,80 @@ main {
 @media (max-width: 600px) {
   .page { padding: 2rem 1.2rem 4rem; }
 
-  /* hide Home tab on mobile — logo is the home button */
-  .hide-on-mobile { display: none; }
+  /* hide all nav tabs — hamburger takes over */
+  .nav-tabs { display: none; }
 
-  /* nav — tighten spacing so About is always visible */
+  /* show hamburger */
+  .hamburger { display: flex; }
+
+  /* nav */
   nav { padding: 0 1rem; }
   .nav-logo { font-size: 0.9rem; }
-  .nav-btn { padding: 6px 8px; font-size: 0.82rem; }
+  .nav-links { display: none; }
   .progress-pct-follow { font-size: 1.5rem; }
+
+  /* backdrop — closes menu on outside tap */
+  .mobile-menu-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 98;
+  }
+
+  /* slide-down drawer */
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: var(--nav-h);
+    left: 0; right: 0;
+    z-index: 99;
+    background: rgba(10,10,15,0.97);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.2rem 1.2rem;
+    animation: menuDown 0.18s ease both;
+  }
+
+  @keyframes menuDown {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .mobile-menu-btn {
+    background: none;
+    border: none;
+    font-family: var(--fmono), monospace;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 0.85rem 0.5rem;
+    text-align: left;
+    border-radius: var(--r);
+    transition: color 0.15s;
+  }
+  .mobile-menu-btn.active { color: var(--accent); }
+  .mobile-menu-btn:hover  { color: var(--accent); }
+
+  .mobile-menu-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 0.4rem 0.5rem;
+  }
+
+  .mobile-menu-link {
+    color: var(--muted);
+    text-decoration: none;
+    font-family: var(--fmono), monospace;
+    font-size: 0.88rem;
+    letter-spacing: 0.08em;
+    padding: 0.75rem 0.5rem;
+    border-radius: var(--r);
+    transition: color 0.15s;
+  }
+  .mobile-menu-link:hover { color: var(--accent); }
 
   /* course cards — 2 per row */
   .courses-grid {
