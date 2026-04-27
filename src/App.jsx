@@ -263,9 +263,9 @@ function HomePage() {
 
 function ProjectDetail({ project, onBack }) {
   return (
-    <div className="page project-detail-page">
+    <div className="page project-detail-page" style={/** @type {React.CSSProperties} */({ '--accent': project.color })}>
       <button className="back-btn" onClick={onBack}>← Projects</button>
-      <div className="detail-header" style={/** @type {React.CSSProperties} */({ '--accent': project.color })}>
+      <div className="detail-header">
         <div className="detail-tag">{project.tag}</div>
         <h2 className="detail-title">{project.title}</h2>
       </div>
