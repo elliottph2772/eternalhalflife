@@ -410,15 +410,15 @@ export default function App() {
             Eternal<span>Halflife</span>
           </div>
           <div className="nav-links">
-            <EmailLink key={active} className="nav-link" toastPosition="top" />
-            <a href="https://github.com/elliottph2772" className="nav-link" target="_blank" rel="noreferrer">GitHub</a>
-            <a href="https://linkedin.com/in/elliotthudson" className="nav-link" target="_blank" rel="noreferrer">LinkedIn</a>
+            <EmailLink key={active} className="nav-link nav-link--email" toastPosition="top" />
+            <a href="https://github.com/elliottph2772" className="nav-link nav-link--github" target="_blank" rel="noreferrer">GitHub</a>
+            <a href="https://linkedin.com/in/elliotthudson" className="nav-link nav-link--linkedin" target="_blank" rel="noreferrer">LinkedIn</a>
           </div>
           <ul className="nav-tabs">
             {TABS.map((t) => (
                 <li key={t.id} className={t.id === 'home' ? 'hide-on-mobile' : ''}>
                   <button
-                      className={`nav-btn ${active === t.id ? 'active' : ''}`}
+                      className={`nav-btn nav-btn--${t.id} ${active === t.id ? 'active' : ''}`}
                       onClick={() => handleTabClick(t.id)}
                   >
                     {t.label}

@@ -75,7 +75,9 @@ nav {
   letter-spacing: 0.08em;
   transition: color 0.15s;
 }
-.nav-link:hover { color: var(--accent); }
+.nav-link--email:hover   { color: #5b8fff; }
+.nav-link--github:hover  { color: #7fffb2; }
+.nav-link--linkedin:hover { color: #ff7fb2; }
 
 .nav-tabs {
   display: flex; gap: 2px; list-style: none;
@@ -94,8 +96,13 @@ nav {
   text-shadow: 0 0 10px rgba(255,255,255,0.25);
   transition: color 0.15s, background 0.15s, transform 0.15s;
 }
-.nav-btn:hover  { color: var(--accent); background: none; }
-.nav-btn.active { color: var(--accent); background: rgba(127,255,178,0.07); }
+.nav-btn--home:hover,     .nav-btn--home.active     { color: #5b8fff; }
+.nav-btn--projects:hover, .nav-btn--projects.active { color: #7fffb2; }
+.nav-btn--courses:hover,  .nav-btn--courses.active  { color: #ff7fb2; }
+.nav-btn:hover  { background: none; }
+.nav-btn--home.active     { background: rgba(91,143,255,0.07); }
+.nav-btn--projects.active { background: rgba(127,255,178,0.07); }
+.nav-btn--courses.active  { background: rgba(255,127,178,0.07); }
 
 /* ── MAIN ────────────────────────────────────────────────────────────────────── */
 main {
