@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import './App.css'
 import WGUPSDemo from './WGUPSDemo.jsx'
-import { SiPython, SiReact, SiJavascript, SiHtml5, SiGit, SiLinux, SiVite, SiThreedotjs, SiCplusplus, SiNodedotjs } from 'react-icons/si'
+import { SiPython, SiReact, SiJavascript, SiHtml5, SiGit, SiLinux, SiVite, SiCplusplus, SiNodedotjs } from 'react-icons/si'
 import { FaDatabase, FaJava } from 'react-icons/fa'
+import dockerLogo from './assets/docker-logo.svg'
 
 // ── EMAIL LINK ────────────────────────────────────────────────────────────────
 const EMAIL = 'elliottph2772@gmail.com'
@@ -154,16 +155,16 @@ const projects = [
 ]
 
 const techStack = [
-  { name: 'Python',      Icon: SiPython,      color: '#3776ab' },
-  { name: 'Java',        Icon: FaJava,        color: '#f89820' },
   { name: 'React',       Icon: SiReact,       color: '#61dafb' },
+  { name: 'Java',        Icon: FaJava,        color: '#f89820' },
+  { name: 'Docker',      img: dockerLogo },
+  { name: 'Python',      Icon: SiPython,      color: '#3776ab' },
   { name: 'JavaScript',  Icon: SiJavascript,  color: '#f7df1e' },
   { name: 'HTML & CSS',  Icon: SiHtml5,       color: '#e34f26' },
   { name: 'SQL',         Icon: FaDatabase,    color: '#4479a1' },
   { name: 'Git',         Icon: SiGit,         color: '#f05032' },
   { name: 'Linux',       Icon: SiLinux,       color: '#fcc624' },
   { name: 'Vite',        Icon: SiVite,        color: '#646cff' },
-  { name: 'Three.js',    Icon: SiThreedotjs,  color: '#049ef4' },
   { name: 'C++',         Icon: SiCplusplus,   color: '#00599c' },
   { name: 'Node.js',     Icon: SiNodedotjs,   color: '#339933' },
 ]
@@ -230,9 +231,11 @@ function HomePage() {
 
       <div className="tech-section">
         <div className="tech-grid">
-          {techStack.map(({ name, Icon, color }, i) => (
+          {techStack.map(({ name, Icon, color, img }, i) => (
             <div className="tech-card" key={name} style={{ animationDelay: `${i * 60}ms` }}>
-              <Icon size={52} color={color} />
+              {img
+                ? <img src={img} alt={name} style={{ width: 52, height: 52 }} />
+                : <Icon size={52} color={color} />}
               <div className="tech-name">{name}</div>
             </div>
           ))}
