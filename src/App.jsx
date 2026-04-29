@@ -232,7 +232,7 @@ function HomePage() {
       <div className="tech-section">
         <div className="tech-grid">
           {techStack.map(({ name, Icon, color }, i) => (
-            <div className="tech-card" key={name} style={{ animationDelay: `${i * 60}ms` }}>
+            <div className="tech-card" key={name} style={{ animationDelay: `${i * 60}ms`, '--icon-color': color }}>
               <Icon size={52} color={color} />
               <div className="tech-name">{name}</div>
             </div>

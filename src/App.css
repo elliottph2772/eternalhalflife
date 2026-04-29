@@ -308,7 +308,7 @@ main {
 }
 .tech-card:hover {
   transform: translateY(-3px);
-  border-color: rgba(127,255,178,0.25);
+  border-color: color-mix(in srgb, var(--icon-color) 45%, transparent);
 }
 .tech-name {
   font-size: 1rem;
