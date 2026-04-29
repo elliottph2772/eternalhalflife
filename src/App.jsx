@@ -136,7 +136,7 @@ const projects = [
     title: 'Portfolio Website',
     tag: 'React · Vite',
     description:
-      'This site — built from scratch with React, Vite, and React Three Fiber. Reactive graduation progress tracker, multi-tab routing, and Deployment.',
+      'This site — built from scratch with React & Vite. Reactive graduation progress tracker, multi-tab routing, and Deployment.',
     highlights: [
       'Reactive CU progress bar',
       'Tab-based SPA routing',
