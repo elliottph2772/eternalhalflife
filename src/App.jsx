@@ -2,9 +2,8 @@ import { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import './App.css'
 import WGUPSDemo from './WGUPSDemo.jsx'
-import { SiPython, SiReact, SiJavascript, SiHtml5, SiGit, SiLinux, SiVite, SiCplusplus, SiNodedotjs } from 'react-icons/si'
+import { SiPython, SiReact, SiJavascript, SiHtml5, SiGit, SiLinux, SiVite, SiCplusplus, SiNodedotjs, SiDocker } from 'react-icons/si'
 import { FaDatabase, FaJava } from 'react-icons/fa'
-import dockerLogo from './assets/docker-logo.svg'
 
 // ── EMAIL LINK ────────────────────────────────────────────────────────────────
 const EMAIL = 'elliottph2772@gmail.com'
@@ -94,6 +93,8 @@ const courses = [
   { name: 'Data Structures and Algorithms II',                     cus: 4,  grade: 'Pass', term: 'Data'        },
 ]
 
+const completedCUs = courses.reduce((sum, c) => sum + c.cus, 0)
+
 const projects = [
   {
   id: 1,
@@ -133,7 +134,7 @@ const projects = [
   {
     id: 2,
     title: 'Portfolio Website',
-    tag: 'React · Vite · Three.js',
+    tag: 'React · Vite',
     description:
       'This site — built from scratch with React, Vite, and React Three Fiber. Reactive graduation progress tracker, multi-tab routing, and Deployment.',
     highlights: [
@@ -157,7 +158,7 @@ const projects = [
 const techStack = [
   { name: 'React',       Icon: SiReact,       color: '#61dafb' },
   { name: 'Java',        Icon: FaJava,        color: '#f89820' },
-  { name: 'Docker',      img: dockerLogo },
+  { name: 'Docker',      Icon: SiDocker,      color: '#2496ed' },
   { name: 'Python',      Icon: SiPython,      color: '#3776ab' },
   { name: 'JavaScript',  Icon: SiJavascript,  color: '#f7df1e' },
   { name: 'HTML & CSS',  Icon: SiHtml5,       color: '#e34f26' },
@@ -172,7 +173,6 @@ const techStack = [
 // ── PAGES ─────────────────────────────────────────────────────────────────────
 
 function HomePage() {
-  const completedCUs = courses.reduce((sum, c) => sum + c.cus, 0)
   const pct = Math.round((completedCUs / WGU_TOTAL_CUS) * 100)
   const [displayPct, setDisplayPct] = useState(0)
   const [labelPos, setLabelPos] = useState(0)
@@ -231,11 +231,9 @@ function HomePage() {
 
       <div className="tech-section">
         <div className="tech-grid">
-          {techStack.map(({ name, Icon, color, img }, i) => (
+          {techStack.map(({ name, Icon, color }, i) => (
             <div className="tech-card" key={name} style={{ animationDelay: `${i * 60}ms` }}>
-              {img
-                ? <img src={img} alt={name} style={{ width: 52, height: 52 }} />
-                : <Icon size={52} color={color} />}
+              <Icon size={52} color={color} />
               <div className="tech-name">{name}</div>
             </div>
           ))}
@@ -344,7 +342,6 @@ const CAT_COLORS = {
 }
 
 function CoursesPage() {
-  const completedCUs = courses.reduce((sum, c) => sum + c.cus, 0)
   return (
     <div className="page courses-page">
       <div className="page-header">
@@ -419,7 +416,7 @@ export default function App() {
           </div>
           <ul className="nav-tabs">
             {TABS.map((t) => (
-                <li key={t.id} className={t.id === 'home' ? 'hide-on-mobile' : ''}>
+                <li key={t.id}>
                   <button
                       className={`nav-btn nav-btn--${t.id} ${active === t.id ? 'active' : ''}`}
                       onClick={() => handleTabClick(t.id)}
