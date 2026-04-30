@@ -172,7 +172,7 @@ const techStack = [
 
 // ── PAGES ─────────────────────────────────────────────────────────────────────
 
-function HomePage({ onNavigate }) {
+function HomePage() {
   const pct = Math.round((completedCUs / WGU_TOTAL_CUS) * 100)
   const [displayPct, setDisplayPct] = useState(0)
   const [labelPos, setLabelPos] = useState(0)
@@ -255,7 +255,6 @@ function HomePage({ onNavigate }) {
 
       <footer className="home-footer reveal" style={{ transitionDelay: '0.39s' }}>
         <EmailLink className="about-link" />
-        <button className="about-link btn-reset" onClick={() => onNavigate('resume')}>Resume</button>
         <a href="https://github.com/elliottph2772" className="about-link" target="_blank" rel="noreferrer">GitHub</a>
         <a href="https://linkedin.com/in/elliotthudson" className="about-link" target="_blank" rel="noreferrer">LinkedIn</a>
       </footer>
@@ -454,6 +453,7 @@ function ResumePage() {
 
 const TABS = [
   { id: 'home',     label: 'Home',     Page: HomePage     },
+  { id: 'resume',   label: 'Resume',   Page: ResumePage   },
   { id: 'projects', label: 'Projects', Page: ProjectsPage },
   { id: 'courses',  label: 'Courses',  Page: CoursesPage  },
 ]
@@ -477,12 +477,6 @@ export default function App() {
     if (active === 'projects') {
       return <ProjectsPage selected={selectedProject} setSelected={setSelectedProject} />
     }
-    if (active === 'resume') {
-      return <ResumePage />
-    }
-    if (active === 'home') {
-      return <HomePage onNavigate={handleTabClick} />
-    }
     const { Page } = TABS.find((t) => t.id === active)
     return <Page />
   }
@@ -495,7 +489,6 @@ export default function App() {
           </div>
           <div className="nav-links">
             <EmailLink key={active} className="nav-link nav-link--email" toastPosition="top" />
-            <button className="nav-link nav-link--resume btn-reset" onClick={() => handleTabClick('resume')}>Resume</button>
             <a href="https://github.com/elliottph2772" className="nav-link nav-link--github" target="_blank" rel="noreferrer">GitHub</a>
             <a href="https://linkedin.com/in/elliotthudson" className="nav-link nav-link--linkedin" target="_blank" rel="noreferrer">LinkedIn</a>
           </div>
@@ -536,7 +529,6 @@ export default function App() {
               <div className="mobile-menu-divider" />
               <div className="mobile-menu-socials">
                 <EmailLink className="mobile-menu-link" onAfterClick={() => setMenuOpen(false)} toastPosition="top" />
-                <button className="mobile-menu-link btn-reset" onClick={() => handleTabClick('resume')}>Resume</button>
                 <a href="https://github.com/elliottph2772" className="mobile-menu-link" target="_blank" rel="noreferrer" onClick={() => setMenuOpen(false)}>GitHub</a>
                 <a href="https://linkedin.com/in/elliotthudson" className="mobile-menu-link" target="_blank" rel="noreferrer" onClick={() => setMenuOpen(false)}>LinkedIn</a>
               </div>
