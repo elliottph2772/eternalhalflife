@@ -172,7 +172,7 @@ const techStack = [
 
 // ── PAGES ─────────────────────────────────────────────────────────────────────
 
-function HomePage() {
+function HomePage({ onNavigate }) {
   const pct = Math.round((completedCUs / WGU_TOTAL_CUS) * 100)
   const [displayPct, setDisplayPct] = useState(0)
   const [labelPos, setLabelPos] = useState(0)
@@ -255,6 +255,7 @@ function HomePage() {
 
       <footer className="home-footer reveal" style={{ transitionDelay: '0.39s' }}>
         <EmailLink className="about-link" />
+        <button className="about-link btn-reset" onClick={() => onNavigate('resume')}>Resume</button>
         <a href="https://github.com/elliottph2772" className="about-link" target="_blank" rel="noreferrer">GitHub</a>
         <a href="https://linkedin.com/in/elliotthudson" className="about-link" target="_blank" rel="noreferrer">LinkedIn</a>
       </footer>
@@ -372,6 +373,83 @@ function CoursesPage() {
   )
 }
 
+function ResumePage() {
+  return (
+    <div className="page resume-page">
+      <div className="page-header">
+        <h2>Resume</h2>
+        <a href="/resume.pdf" className="resume-download-btn" download>Download PDF</a>
+      </div>
+      <div className="resume-body">
+        <section className="resume-section">
+          <h3 className="resume-section-title">Education</h3>
+          <div className="resume-entry">
+            <div className="resume-entry-header">
+              <span className="resume-entry-title">Western Governors University</span>
+              <span className="resume-entry-location">Salt Lake City, Utah</span>
+            </div>
+            <div className="resume-entry-sub">B.S. Computer Science · Expected Graduation: December 2026 · GPA: 3.8 / 4.0</div>
+            <p className="resume-entry-detail"><strong>Relevant Coursework:</strong> Data Structures &amp; Algorithms I &amp; II, Discrete Mathematics I &amp; II, Advanced Java, Back-End Programming, Linux Foundations (LPI Linux Essentials Cert), Version Control, Information Security</p>
+          </div>
+        </section>
+
+        <section className="resume-section">
+          <h3 className="resume-section-title">Technical Skills</h3>
+          <div className="resume-skills">
+            <div><strong>Languages:</strong> React (self-taught), Java, Python, JavaScript, SQL</div>
+            <div><strong>Tools &amp; Platforms:</strong> GitHub, VS Code, JetBrains IDEs, Linux, Claude, Docker Desktop, MySQL Workbench, Postman</div>
+            <div><strong>Concepts:</strong> Web Design, Data Structures, OOP, Algorithms, Databases, REST APIs</div>
+          </div>
+        </section>
+
+        <section className="resume-section">
+          <h3 className="resume-section-title">Projects</h3>
+          <div className="resume-entry">
+            <div className="resume-entry-header">
+              <span className="resume-entry-title">Rocket League Stat Tracker</span>
+              <span className="resume-entry-date">Currently working on</span>
+            </div>
+            <div className="resume-entry-tags">React · JavaScript · REST API</div>
+            <p className="resume-entry-detail">Building a web app that pulls player stats from the Rocket League API, allowing users to search any player profile and view ranked history, win rates, and performance trends across last x amount of games.</p>
+          </div>
+          <div className="resume-entry">
+            <div className="resume-entry-header">
+              <span className="resume-entry-title">Personal Portfolio Website</span>
+              <span className="resume-entry-date">April 2025</span>
+            </div>
+            <div className="resume-entry-tags">React · JavaScript · CSS</div>
+            <p className="resume-entry-detail">Designed and built a personal portfolio site from scratch using React and Vite, showcasing projects, skills, and interactive demos. Features a custom dark-themed UI, animated components, deployed live at eternalhalflife.dev.</p>
+          </div>
+          <div className="resume-entry">
+            <div className="resume-entry-header">
+              <span className="resume-entry-title">WGUPS (Traveling Salesman NP-Complete Problem)</span>
+              <span className="resume-entry-date">March 2026</span>
+            </div>
+            <div className="resume-entry-tags">Python · Data Structures</div>
+            <p className="resume-entry-detail">Designed a program to handle daily package intake for a delivery warehouse using CSV imports. Built a Hash Table &amp; Linked List to store packages and generate delivery routes via a Nearest Neighbor Algorithm.</p>
+          </div>
+        </section>
+
+        <section className="resume-section">
+          <h3 className="resume-section-title">Activities &amp; Honors</h3>
+          <div className="resume-entry">
+            <div className="resume-entry-header">
+              <span className="resume-entry-title">WGU's Chapter of the National Society of Leadership &amp; Success</span>
+              <span className="resume-entry-date">Feb 2025 – Present</span>
+            </div>
+            <p className="resume-entry-detail">Award received for academic accomplishments at WGU.</p>
+          </div>
+        </section>
+
+        <section className="resume-section">
+          <h3 className="resume-section-title">Experience</h3>
+          <p className="resume-entry-detail resume-no-exp">No relevant tech experience yet — eager and ready for my first opportunity.</p>
+        </section>
+      </div>
+    </div>
+  )
+}
+
 // ── ROOT ──────────────────────────────────────────────────────────────────────
 
 const TABS = [
@@ -399,6 +477,12 @@ export default function App() {
     if (active === 'projects') {
       return <ProjectsPage selected={selectedProject} setSelected={setSelectedProject} />
     }
+    if (active === 'resume') {
+      return <ResumePage />
+    }
+    if (active === 'home') {
+      return <HomePage onNavigate={handleTabClick} />
+    }
     const { Page } = TABS.find((t) => t.id === active)
     return <Page />
   }
@@ -411,6 +495,7 @@ export default function App() {
           </div>
           <div className="nav-links">
             <EmailLink key={active} className="nav-link nav-link--email" toastPosition="top" />
+            <button className="nav-link nav-link--resume btn-reset" onClick={() => handleTabClick('resume')}>Resume</button>
             <a href="https://github.com/elliottph2772" className="nav-link nav-link--github" target="_blank" rel="noreferrer">GitHub</a>
             <a href="https://linkedin.com/in/elliotthudson" className="nav-link nav-link--linkedin" target="_blank" rel="noreferrer">LinkedIn</a>
           </div>
@@ -451,6 +536,7 @@ export default function App() {
               <div className="mobile-menu-divider" />
               <div className="mobile-menu-socials">
                 <EmailLink className="mobile-menu-link" onAfterClick={() => setMenuOpen(false)} toastPosition="top" />
+                <button className="mobile-menu-link btn-reset" onClick={() => handleTabClick('resume')}>Resume</button>
                 <a href="https://github.com/elliottph2772" className="mobile-menu-link" target="_blank" rel="noreferrer" onClick={() => setMenuOpen(false)}>GitHub</a>
                 <a href="https://linkedin.com/in/elliotthudson" className="mobile-menu-link" target="_blank" rel="noreferrer" onClick={() => setMenuOpen(false)}>LinkedIn</a>
               </div>
