@@ -136,7 +136,7 @@ const projects = [
     title: 'Portfolio Website',
     tag: 'React · Vite',
     description:
-      'This site — built from scratch with React & Vite. Reactive graduation progress tracker, multi-tab routing, and Deployment.',
+      'This site — built with React & Vite. Reactive graduation progress tracker, multi-tab routing, and Deployment.',
     highlights: [
       'Reactive CU progress bar',
       'Tab-based SPA routing',
@@ -377,7 +377,6 @@ function ResumePage() {
     <div className="page resume-page">
       <div className="page-header">
         <h2>Resume</h2>
-        <a href="/resume.pdf" className="resume-download-btn" download>Download PDF</a>
       </div>
       <div className="resume-body">
         <section className="resume-section">
@@ -417,7 +416,7 @@ function ResumePage() {
               <span className="resume-entry-date">April 2025</span>
             </div>
             <div className="resume-entry-tags">React · JavaScript · CSS</div>
-            <p className="resume-entry-detail">Designed and built a personal portfolio site from scratch using React and Vite, showcasing projects, skills, and interactive demos. Features a custom dark-themed UI, animated components, deployed live at eternalhalflife.dev.</p>
+            <p className="resume-entry-detail">Designed and built this wonderful personal portfolio site using React and Vite, showcasing projects, skills, and interactive demos. Features a custom dark-themed UI, animated components, deployed live at eternalhalflife.dev.</p>
           </div>
           <div className="resume-entry">
             <div className="resume-entry-header">
