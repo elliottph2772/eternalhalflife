@@ -488,7 +488,7 @@ export default function App() {
   return (
       <>
         <nav>
-          <div className="nav-logo" onClick={() => { setActive('home'); setSelectedProject(null); setMenuOpen(false) }} style={{cursor: 'pointer'}}>
+          <div className="nav-logo" onClick={() => { setActive('home'); setSelectedProject(null); setMenuOpen(false); window.scrollTo({ top: 0, behavior: 'instant' }) }} style={{cursor: 'pointer'}}>
             Eternal<span>Halflife</span>
           </div>
           <div className="nav-links">
