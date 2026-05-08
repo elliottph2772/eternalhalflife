@@ -212,9 +212,6 @@ function HomePage() {
       <div className="hero">
         <div className="hero-tag">B.S. Computer Science · WGU</div>
         <h1 className="hero-name">Elliott Hudson</h1>
-        <p className="hero-sub">
-          Eternal HalfLife — Some Things Fade, But Hard Work Remains.
-        </p>
       </div>
 
       <div className="progress-section">
@@ -230,6 +227,9 @@ function HomePage() {
       </div>
 
       <div className="tech-section">
+        <p className="tech-section-sub">
+          Tech Stack I am familiar with:
+        </p>
         <div className="tech-grid">
           {techStack.map(({ name, Icon, color }, i) => (
             <div className="tech-card" key={name} style={{ animationDelay: `${i * 60}ms`, '--icon-color': color }}>
@@ -251,9 +251,13 @@ function HomePage() {
             <p>{b.text}</p>
           </div>
         ))}
+        <div className="about-block reveal" style={{ transitionDelay: '0.39s' }}>
+          <div className="about-block-label">Eternal<br />Halflife</div>
+          <p>A personal brand I came up with when I was younger. The eternal existence of radioactive decay. I always wanted to create something derived from my initials, and so Eternal Halflife was born.</p>
+        </div>
       </div>
 
-      <footer className="home-footer reveal" style={{ transitionDelay: '0.39s' }}>
+      <footer className="home-footer reveal" style={{ transitionDelay: '0.52s' }}>
         <EmailLink className="about-link" />
         <a href="https://github.com/elliottph2772" className="about-link" target="_blank" rel="noreferrer">GitHub</a>
         <a href="https://linkedin.com/in/elliotthudson" className="about-link" target="_blank" rel="noreferrer">LinkedIn</a>
@@ -464,6 +468,7 @@ export default function App() {
 
   function handleTabClick(id) {
     setMenuOpen(false)
+    window.scrollTo({ top: 0, behavior: 'instant' })
     if (id === 'projects' && active === 'projects' && selectedProject) {
       setSelectedProject(null)
     } else {
