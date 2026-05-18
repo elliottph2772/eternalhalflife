@@ -253,7 +253,7 @@ function HomePage() {
         ))}
         <div className="about-block reveal" style={{ transitionDelay: '0.39s' }}>
           <div className="about-block-label">Eternal<br />Halflife</div>
-          <p>A personal brand I came up with when I was younger. The eternal existence of radioactive decay. I always wanted to create something derived from my initials, and so Eternal Halflife was born.</p>
+          <p>A personal brand, derived from my initials that I came up with when I was younger.</p>
         </div>
       </div>
 
@@ -398,7 +398,7 @@ function ResumePage() {
         <section className="resume-section">
           <h3 className="resume-section-title">Technical Skills</h3>
           <div className="resume-skills">
-            <div><strong>Languages:</strong> React (self-taught), Java, Python, JavaScript, SQL</div>
+            <div><strong>Languages:</strong> React (Learning on my own time), Java, Python, JavaScript, SQL</div>
             <div><strong>Tools &amp; Platforms:</strong> GitHub, VS Code, JetBrains IDEs, Linux, Claude, Docker Desktop, MySQL Workbench, Postman</div>
             <div><strong>Concepts:</strong> Web Design, Data Structures, OOP, Algorithms, Databases, REST APIs</div>
           </div>
@@ -408,11 +408,11 @@ function ResumePage() {
           <h3 className="resume-section-title">Projects</h3>
           <div className="resume-entry">
             <div className="resume-entry-header">
-              <span className="resume-entry-title">Rocket League Stat Tracker</span>
+              <span className="resume-entry-title">Video Game Project</span>
               <span className="resume-entry-date">Currently working on</span>
             </div>
             <div className="resume-entry-tags">React · JavaScript · REST API</div>
-            <p className="resume-entry-detail">Building a web app that pulls player stats from the Rocket League API, allowing users to search any player profile and view ranked history, win rates, and performance trends across last x amount of games.</p>
+            <p className="resume-entry-detail">Building a web application for competitive video game players in a team setting to aggregate and analyze team performance.</p>
           </div>
           <div className="resume-entry">
             <div className="resume-entry-header">
@@ -420,15 +420,15 @@ function ResumePage() {
               <span className="resume-entry-date">April 2025</span>
             </div>
             <div className="resume-entry-tags">React · JavaScript · CSS</div>
-            <p className="resume-entry-detail">Designed and built this wonderful personal portfolio site using React and Vite, showcasing projects, skills, and interactive demos. Features a custom dark-themed UI, animated components, deployed live at eternalhalflife.dev.</p>
+            <p className="resume-entry-detail">Designed and built a personal portfolio site using React framework, showcasing projects &amp; experience. Features a sleek dark-themed UI, animated components, and is deployed live at eternalhalflife.dev. Available on GitHub.</p>
           </div>
           <div className="resume-entry">
             <div className="resume-entry-header">
               <span className="resume-entry-title">WGUPS (Traveling Salesman NP-Complete Problem)</span>
-              <span className="resume-entry-date">March 2026</span>
+              <span className="resume-entry-date">November 2025</span>
             </div>
             <div className="resume-entry-tags">Python · Data Structures</div>
-            <p className="resume-entry-detail">Designed a program to handle daily package intake for a delivery warehouse using CSV imports. Built a Hash Table &amp; Linked List to store packages and generate delivery routes via a Nearest Neighbor Algorithm.</p>
+            <p className="resume-entry-detail">For Data Structures &amp; Algorithms II we designed our own project to handle daily package intake for a delivery warehouse. Using CSV file imports from excel spreadsheets of package information &amp; delivery address locations, I developed a program that used a Hash Table &amp; Linked List to store the packages and generate routes for the trucks using a distance matrix &amp; Nearest Neighbor Algorithm.</p>
           </div>
         </section>
 
